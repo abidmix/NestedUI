@@ -6,6 +6,15 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route("about");
+  this.route("activities", function(){
+       this.route("view",{ path: ''},function(){
+       this.route("new");
+       this.route('show',{ path:'/activity/:id'},function( ){
+        this.route("edit");
+       });
+     });
+  });
 });
 
 export default Router;

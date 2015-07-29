@@ -11,6 +11,21 @@ module.exports = function(environment) {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
       }
+     },
+    sassOptions:{
+    includePaths: [
+      'bower_components/bootstrap-sass-official/assets/stylesheets'
+    ]
+  },
+    contentSecurityPolicyHeader: 'Content-Security-Policy',
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' use.typekit.net connect.facebook.net maps.googleapis.com maps.gstatic.com",
+      'connect-src': '*',
+      'img-src': "'self' www.facebook.com p.typekit.net",
+      'style-src': "'self' 'unsafe-inline' use.typekit.net  ",
+      'frame-src': "s-static.ak.facebook.com static.ak.facebook.com www.facebook.com",
+      'font-src': "'self'",
     },
 
     APP: {
@@ -38,9 +53,18 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
   }
-
-  if (environment === 'production') {
-
+  
+  
+  
+    if (environment === 'heroku') {
+    ENV['ember-cli-mirage'] = {
+      enabled: true
+    };
+  }
+ if (environment === 'production') {
+   ENV['ember-cli-mirage'] = {
+      enabled: true
+    };
   }
 
   return ENV;
